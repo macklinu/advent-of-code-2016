@@ -5,5 +5,20 @@
   "main": "index.js",
   "repository": "https://github.com/macklinu/advent-of-code-2016.git",
   "author": "Macklin Underdown <macklinu@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-jest": "^17.0.2",
+    "babel-preset-latest": "^6.16.0",
+    "jest": "^17.0.3"
+  }
 }
