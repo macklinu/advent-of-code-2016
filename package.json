@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "standard && jest"
   },
   "jest": {
     "transform": {
@@ -16,9 +16,16 @@
     },
     "testEnvironment": "node"
   },
+  "standard": {
+    "globals": [
+      "test",
+      "expect"
+    ]
+  },
   "devDependencies": {
     "babel-jest": "^17.0.2",
     "babel-preset-latest": "^6.16.0",
-    "jest": "^17.0.3"
+    "jest": "^17.0.3",
+    "standard": "^8.6.0"
   }
 }
