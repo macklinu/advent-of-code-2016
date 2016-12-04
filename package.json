@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "standard && jest"
+    "lint": "standard",
+    "test": "jest",
+    "watch": "jest --watch"
   },
   "jest": {
     "transform": {
@@ -18,6 +20,8 @@
   },
   "standard": {
     "globals": [
+      "describe",
+      "it",
       "test",
       "expect"
     ]
@@ -27,5 +31,8 @@
     "babel-preset-latest": "^6.16.0",
     "jest": "^17.0.3",
     "standard": "^8.6.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.2"
   }
 }
