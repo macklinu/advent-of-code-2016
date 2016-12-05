@@ -24,11 +24,14 @@
       "it",
       "test",
       "expect"
-    ]
+    ],
+    "parser": "babel-eslint"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-jest": "^17.0.2",
     "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
     "jest": "^17.0.3",
     "standard": "^8.6.0"
   },
