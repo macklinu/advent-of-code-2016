@@ -1,4 +1,4 @@
-import taxicab from '../'
+import taxicab from './'
 
 describe('taxicab()', () => {
   it('travels 5 blocks for instructions `R2, L3`', () => {

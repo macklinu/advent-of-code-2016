@@ -1,4 +1,4 @@
-import { next, previous, applyDirection, parseInstruction } from '../helpers'
+import { next, previous, applyDirection, parseInstruction } from './helpers'
 
 const directions = ['N', 'E', 'S', 'W']
 
