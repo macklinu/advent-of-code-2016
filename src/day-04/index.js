@@ -2,15 +2,14 @@ import { rankKeys, scanner } from './helpers'
 
 import flow from 'lodash/fp/flow'
 import isEmpty from 'lodash/fp/isEmpty'
-import isEqual from 'lodash/fp/isEqual'
+import join from 'lodash/fp/join'
 import map from 'lodash/fp/map'
 import reduce from 'lodash/fp/reduce'
 import reject from 'lodash/fp/reject'
 import split from 'lodash/fp/split'
 import take from 'lodash/fp/take'
 
-const takeFirstFiveSortedLettersFromRoom = flow(rankKeys, take(5))
-const stringToArray = split('')
+const takeFirstFiveSortedLettersFromRoom = flow(rankKeys, take(5), join(''))
 
 export default (input) => {
   return flow(
@@ -23,9 +22,8 @@ export default (input) => {
         name,
         sectorId
       } = room
-      const nameArray = takeFirstFiveSortedLettersFromRoom(name)
-      const checksumArray = stringToArray(checksum)
-      return isEqual(nameArray, checksumArray) ? (sectorId + totalCount) : totalCount
+      const fiveRoomLetters = takeFirstFiveSortedLettersFromRoom(name)
+      return fiveRoomLetters === checksum ? (sectorId + totalCount) : totalCount
     }, 0)
   )(input)
 }
