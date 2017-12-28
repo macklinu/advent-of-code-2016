@@ -12,22 +12,16 @@
     "test": "jest",
     "watch": "jest --watch"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
-    "testEnvironment": "node"
-  },
   "standard": {
     "globals": ["describe", "it", "test", "expect"],
     "parser": "babel-eslint"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-eslint": "^7.1.1",
-    "babel-jest": "^17.0.2",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "jest": "^17.0.3",
+    "babel-jest": "^22.0.4",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.0.4",
     "standard": "^8.6.0"
   },
   "dependencies": {
