@@ -1,5 +1,5 @@
-export default function next (array = []) {
-  return function (value, position = 1) {
+export default function next(array = []) {
+  return function(value, position = 1) {
     const index = array.indexOf(value)
     console.log({ index })
     if (index === -1) return null

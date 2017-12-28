@@ -16,6 +16,8 @@ test('it treats `totally-real-room-200[decoy]` as an invalid room', () => {
   expect(sumOfSectorIds(`totally-real-room-200[decoy]`)).toEqual(0)
 })
 test('it solves the day 4 part 1 puzzle', () => {
-  const input = fs.readFileSync(path.join(__dirname, './input.txt'), { encoding: 'utf8' })
+  const input = fs.readFileSync(path.join(__dirname, './input.txt'), {
+    encoding: 'utf8',
+  })
   expect(sumOfSectorIds(input)).toEqual(173787)
 })

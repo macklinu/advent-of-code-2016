@@ -18,14 +18,8 @@ const parseInput = flow(
   map(trim),
   reject(isEmpty),
   map(value =>
-    flow(
-      split(' '),
-      reject(isEmpty),
-      trim,
-      split(','),
-      map(toNumber)
-    )(value)
-  ),
+    flow(split(' '), reject(isEmpty), trim, split(','), map(toNumber))(value)
+  )
 )
 
 const sortAscending = sortBy(identity)
@@ -44,10 +38,11 @@ export default (input, parseDirection) => {
       else if (index % 3 === 1) secondColumn.push(value)
       else thirdColumn.push(value)
     })
-    instructions = flow(
-      map(chunk(3)),
-      flatten
-    )([firstColumn, secondColumn, thirdColumn])
+    instructions = flow(map(chunk(3)), flatten)([
+      firstColumn,
+      secondColumn,
+      thirdColumn,
+    ])
   } else {
     // no need to do additional parsing
     instructions = values

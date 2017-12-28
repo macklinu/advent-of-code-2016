@@ -18,16 +18,13 @@ const handleInstruction = (result, value) => {
   const cardinalDirection = (turn === 'R' ? turnRight : turnLeft)(direction)
   return {
     coordinates: applyDirection(coordinates, cardinalDirection, steps),
-    direction: cardinalDirection
+    direction: cardinalDirection,
   }
 }
 const handleInstructions = reduce(handleInstruction, initialState)
 
-export default (input) => {
+export default input => {
   const instructions = split(', ')(input)
   const { coordinates } = handleInstructions(instructions)
-  return flow(
-    map(Math.abs),
-    sum
-  )(coordinates)
+  return flow(map(Math.abs), sum)(coordinates)
 }

@@ -8,21 +8,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "standard",
     "test": "jest",
     "watch": "jest --watch"
   },
-  "standard": {
-    "globals": ["describe", "it", "test", "expect"],
-    "parser": "babel-eslint"
-  },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.1.1",
     "babel-jest": "^22.0.4",
     "babel-preset-env": "^1.6.1",
     "jest": "^22.0.4",
-    "standard": "^8.6.0"
+    "prettier": "^1.9.2"
   },
   "dependencies": {
     "lodash": "^4.17.2"

@@ -9,8 +9,7 @@ describe('Triangles', () => {
   })
 })
 
-const input =
-`
+const input = `
 883  357  185
 572  189  424
 842  206  272

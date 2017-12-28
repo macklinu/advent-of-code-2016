@@ -17,19 +17,15 @@ const takeFirstFiveSortedLettersFromRoom = flow(
   join('')
 )
 
-export default (input) => {
+export default input => {
   return flow(
     split('\n'),
     reject(isEmpty),
     map(scanner),
     reduce((totalCount, room) => {
-      const {
-        checksum,
-        name,
-        sectorId
-      } = room
+      const { checksum, name, sectorId } = room
       const fiveRoomLetters = takeFirstFiveSortedLettersFromRoom(name)
-      return fiveRoomLetters === checksum ? (sectorId + totalCount) : totalCount
+      return fiveRoomLetters === checksum ? sectorId + totalCount : totalCount
     }, 0)
   )(input)
 }

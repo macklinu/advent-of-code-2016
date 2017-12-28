@@ -16,9 +16,10 @@ const parseInput = flow(
 
 export default (input, calculatorType) => {
   // start at "5" on the pin pad
-  let position = calculatorType === 'square'
-   ? [1, 1] // center of square pin pad
-   : [-2, 0] // left edge of diamond pin pad
+  let position =
+    calculatorType === 'square'
+      ? [1, 1] // center of square pin pad
+      : [-2, 0] // left edge of diamond pin pad
   let codes = []
 
   const pinPad = calculatorType === 'square' ? SquarePinPad : DiamondPinPad

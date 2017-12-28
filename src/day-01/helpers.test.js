@@ -8,7 +8,7 @@ describe('next()', () => {
       { input: 'N', expected: 'E' },
       { input: 'E', expected: 'S' },
       { input: 'S', expected: 'W' },
-      { input: 'W', expected: 'N' } // wraps around to front of array
+      { input: 'W', expected: 'N' }, // wraps around to front of array
     ]
     data.forEach(datum => {
       const { input, expected } = datum
@@ -27,7 +27,7 @@ describe('previous()', () => {
       { input: 'N', expected: 'W' }, // wraps around to back of array
       { input: 'E', expected: 'N' },
       { input: 'S', expected: 'E' },
-      { input: 'W', expected: 'S' }
+      { input: 'W', expected: 'S' },
     ]
     data.forEach(datum => {
       const { input, expected } = datum
