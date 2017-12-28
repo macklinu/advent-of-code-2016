@@ -19,12 +19,7 @@
     "testEnvironment": "node"
   },
   "standard": {
-    "globals": [
-      "describe",
-      "it",
-      "test",
-      "expect"
-    ],
+    "globals": ["describe", "it", "test", "expect"],
     "parser": "babel-eslint"
   },
   "devDependencies": {

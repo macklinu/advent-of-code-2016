@@ -3,12 +3,12 @@ import { rankKeys, scanner } from './helpers'
 describe('scanner()', () => {
   it('parses decrypted string into usable parts', () => {
     expect(scanner('aaaaa-bbb-z-y-x-123[abxyz]')).toEqual({
-      name: 'aaaaabbbzyx',
+      name: 'aaaaa-bbb-z-y-x-',
       sectorId: 123,
       checksum: 'abxyz'
     })
     expect(scanner('sgmtkzoi-pkrrehkgt-rumoyzoiy-436[korgi]')).toEqual({
-      name: 'sgmtkzoipkrrehkgtrumoyzoiy',
+      name: 'sgmtkzoi-pkrrehkgt-rumoyzoiy-',
       sectorId: 436,
       checksum: 'korgi'
     })

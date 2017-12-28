@@ -1,15 +1,21 @@
-import { rankKeys, scanner } from './helpers'
-
 import flow from 'lodash/fp/flow'
 import isEmpty from 'lodash/fp/isEmpty'
 import join from 'lodash/fp/join'
 import map from 'lodash/fp/map'
 import reduce from 'lodash/fp/reduce'
 import reject from 'lodash/fp/reject'
+import replace from 'lodash/fp/replace'
 import split from 'lodash/fp/split'
 import take from 'lodash/fp/take'
 
-const takeFirstFiveSortedLettersFromRoom = flow(rankKeys, take(5), join(''))
+import { rankKeys, scanner } from './helpers'
+
+const takeFirstFiveSortedLettersFromRoom = flow(
+  replace(/-/g, ''),
+  rankKeys,
+  take(5),
+  join('')
+)
 
 export default (input) => {
   return flow(

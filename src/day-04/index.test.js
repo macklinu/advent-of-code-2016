@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+
 import sumOfSectorIds from './'
 
 test('it treats `aaaaa-bbb-z-y-x-123[abxyz]` as a valid room', () => {
