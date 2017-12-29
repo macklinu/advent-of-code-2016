@@ -13,10 +13,11 @@ let {
 } = require('lodash/fp').convert({ cap: false })
 
 export let createPuzzleSolver = charCountHandler => input => {
-  let toWords = flow(split('\n'), filter(Boolean), map(arr => arr.split('')))
+  let toWords = input =>
+    input |> split('\n') |> filter(Boolean) |> map(arr => arr.split(''))
   let words = toWords(input)
 
-  let wordLength = size(first(words))
+  let wordLength = words |> first |> size
 
   let joinWords = reduce((all, arr) => all.concat(arr), [])
   let chars = joinWords(words)
@@ -29,11 +30,12 @@ export let createPuzzleSolver = charCountHandler => input => {
 
   let toCharCount = map(countBy(identity))
 
-  return flow(
-    groupByWordPosition,
-    values,
-    toCharCount,
-    map(charCountHandler),
-    join('')
-  )(chars)
+  return (
+    chars
+    |> groupByWordPosition
+    |> values
+    |> toCharCount
+    |> map(charCountHandler)
+    |> join('')
+  )
 }
