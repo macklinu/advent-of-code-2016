@@ -14,8 +14,7 @@ export function previous(array = []) {
   }
 }
 
-export function applyDirection(coordinates, direction, steps) {
-  const [x, y] = coordinates
+export function applyDirection([x, y], direction, steps) {
   switch (direction) {
     case 'N':
       return [x, y + steps]
