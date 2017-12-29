@@ -6,15 +6,15 @@ import map from 'lodash/fp/map'
 import toNumber from 'lodash/fp/toNumber'
 import toPairs from 'lodash/fp/toPairs'
 
-const regex = /(.+?)([0-9]{3})\[?([a-z]{5})?]?/i
+let regex = /(.+?)([0-9]{3})\[?([a-z]{5})?]?/i
 
-const countLetters = countBy(identity)
-const mapToLetter = map(first)
+let countLetters = countBy(identity)
+let mapToLetter = map(first)
 
 export function scanner(input) {
-  const result = regex.exec(input)
+  let result = regex.exec(input)
   if (result === null) throw Error(`Could not match room regex: ${input}`)
-  const [_, name, sectorId, checksum] = result // eslint-disable-line
+  let [_, name, sectorId, checksum] = result // eslint-disable-line
   return {
     name,
     sectorId: toNumber(sectorId),
@@ -23,15 +23,16 @@ export function scanner(input) {
 }
 
 export function rankKeys(roomName) {
-  return flow(
-    countLetters,
-    toPairs,
-    sortNumericallyAndAlphabetically,
-    mapToLetter
-  )(roomName)
+  return (
+    roomName
+    |> countLetters
+    |> toPairs
+    |> sortNumericallyAndAlphabetically
+    |> mapToLetter
+  )
 }
 
-const sortNumericallyAndAlphabetically = array => {
+let sortNumericallyAndAlphabetically = array => {
   return array.sort((a, b) => {
     return a[1] > b[1]
       ? -1

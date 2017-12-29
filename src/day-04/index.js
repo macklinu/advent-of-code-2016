@@ -10,22 +10,16 @@ import take from 'lodash/fp/take'
 
 import { rankKeys, scanner } from './helpers'
 
-const takeFirstFiveSortedLettersFromRoom = flow(
-  replace(/-/g, ''),
-  rankKeys,
-  take(5),
-  join('')
-)
+let takeFirstFiveSortedLettersFromRoom = name =>
+  name |> replace(/-/g, '') |> rankKeys |> take(5) |> join('')
 
-export default input => {
-  return flow(
-    split('\n'),
-    reject(isEmpty),
-    map(scanner),
-    reduce((totalCount, room) => {
-      const { checksum, name, sectorId } = room
-      const fiveRoomLetters = takeFirstFiveSortedLettersFromRoom(name)
-      return fiveRoomLetters === checksum ? sectorId + totalCount : totalCount
-    }, 0)
-  )(input)
-}
+export default input =>
+  input
+  |> split('\n')
+  |> reject(isEmpty)
+  |> map(scanner)
+  |> reduce((totalCount, { checksum, name, sectorId }) => {
+    return takeFirstFiveSortedLettersFromRoom(name) === checksum
+      ? sectorId + totalCount
+      : totalCount
+  }, 0)
