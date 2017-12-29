@@ -13,42 +13,48 @@ import toNumber from 'lodash/fp/toNumber'
 import trim from 'lodash/fp/trim'
 
 // do some crazy lodash fp string parsing
-const parseInput = flow(
-  split('\n'),
-  map(trim),
-  reject(isEmpty),
-  map(value =>
-    flow(split(' '), reject(isEmpty), trim, split(','), map(toNumber))(value)
+let parseInput = input =>
+  input
+  |> split('\n')
+  |> map(trim)
+  |> reject(isEmpty)
+  |> map(
+    value =>
+      value
+      |> split(' ')
+      |> reject(isEmpty)
+      |> trim
+      |> split(',')
+      |> map(toNumber)
   )
-)
 
-const sortAscending = sortBy(identity)
+let sortAscending = sortBy(identity)
 
 export default (input, parseDirection) => {
-  const values = parseInput(input)
+  let values = parseInput(input)
   let instructions
   if (parseDirection === 'vertical') {
     // chunk columns into groups of 3
     // and flatten into one array of the new instructions
-    const firstColumn = []
-    const secondColumn = []
-    const thirdColumn = []
+    let firstColumn = []
+    let secondColumn = []
+    let thirdColumn = []
     flatten(values).forEach((value, index) => {
       if (index % 3 === 0) firstColumn.push(value)
       else if (index % 3 === 1) secondColumn.push(value)
       else thirdColumn.push(value)
     })
-    instructions = flow(map(chunk(3)), flatten)([
-      firstColumn,
-      secondColumn,
-      thirdColumn,
-    ])
+    instructions =
+      [firstColumn, secondColumn, thirdColumn] |> map(chunk(3)) |> flatten
   } else {
     // no need to do additional parsing
     instructions = values
   }
-  return reduce((prev, curr) => {
-    const [lo, mid, hi] = sortAscending(curr)
-    return Number(add(lo, mid) > hi) + prev
-  }, 0)(instructions)
+  return (
+    instructions
+    |> reduce((prev, curr) => {
+      let [lo, mid, hi] = sortAscending(curr)
+      return Number(add(lo, mid) > hi) + prev
+    }, 0)
+  )
 }
