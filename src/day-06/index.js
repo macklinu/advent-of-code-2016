@@ -9,11 +9,10 @@ let {
   values,
   first,
   size,
-  keys,
   join,
 } = require('lodash/fp').convert({ cap: false })
 
-export function solvePuzzle(input) {
+export let createPuzzleSolver = charCountHandler => input => {
   let toWords = flow(split('\n'), filter(Boolean), map(arr => arr.split('')))
   let words = toWords(input)
 
@@ -30,13 +29,11 @@ export function solvePuzzle(input) {
 
   let toCharCount = map(countBy(identity))
 
-  let maxValue = obj => keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b))
-
   return flow(
     groupByWordPosition,
     values,
     toCharCount,
-    map(maxValue),
+    map(charCountHandler),
     join('')
   )(chars)
 }

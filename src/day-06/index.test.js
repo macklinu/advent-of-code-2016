@@ -1,4 +1,4 @@
-import { solvePuzzle } from './'
+import { createPuzzleSolver } from './'
 import puzzleInput from './puzzleInput'
 
 let exampleInput = `eedadn
@@ -20,6 +20,17 @@ enarar
 `
 
 test('solves part 1', () => {
-  expect(solvePuzzle(exampleInput)).toBe('easter')
-  expect(solvePuzzle(puzzleInput)).toBe('agmwzecr')
+  let solve = createPuzzleSolver(obj =>
+    Object.keys(obj).reduce((a, b) => (obj[a] > obj[b] ? a : b))
+  )
+  expect(solve(exampleInput)).toBe('easter')
+  expect(solve(puzzleInput)).toBe('agmwzecr')
+})
+
+test('solves part 2', () => {
+  let solve = createPuzzleSolver(obj =>
+    Object.keys(obj).reduce((a, b) => (obj[a] < obj[b] ? a : b))
+  )
+  expect(solve(exampleInput)).toBe('advent')
+  expect(solve(puzzleInput)).toBe('owlaxqvq')
 })
