@@ -3,9 +3,8 @@ import constant from 'lodash/fp/constant'
 import isEqual from 'lodash/fp/isEqual'
 import isNil from 'lodash/fp/isNil'
 
-export class SquarePinPad {
-  static applyInstruction(position, instruction) {
-    const [x, y] = position
+export let SquarePinPad = {
+  applyInstruction([x, y], instruction) {
     switch (instruction) {
       case 'U':
         return [x, Math.max(y - 1, 0)]
@@ -18,29 +17,30 @@ export class SquarePinPad {
       default:
         throw Error(`Invalid instruction character: ${instruction}`)
     }
-  }
+  },
 
-  static positionToNumber(position) {
-    const number = cond([
-      [isEqual([0, 0]), constant('1')],
-      [isEqual([1, 0]), constant('2')],
-      [isEqual([2, 0]), constant('3')],
-      [isEqual([0, 1]), constant('4')],
-      [isEqual([1, 1]), constant('5')],
-      [isEqual([2, 1]), constant('6')],
-      [isEqual([0, 2]), constant('7')],
-      [isEqual([1, 2]), constant('8')],
-      [isEqual([2, 2]), constant('9')],
-    ])(position)
+  positionToNumber(position) {
+    const number =
+      position
+      |> cond([
+        [isEqual([0, 0]), constant('1')],
+        [isEqual([1, 0]), constant('2')],
+        [isEqual([2, 0]), constant('3')],
+        [isEqual([0, 1]), constant('4')],
+        [isEqual([1, 1]), constant('5')],
+        [isEqual([2, 1]), constant('6')],
+        [isEqual([0, 2]), constant('7')],
+        [isEqual([1, 2]), constant('8')],
+        [isEqual([2, 2]), constant('9')],
+      ])
     if (isNil(number))
       throw Error(`Missing position to number map for: ${position}`)
     return number
-  }
+  },
 }
 
-export class DiamondPinPad {
-  static applyInstruction(position, instruction) {
-    const [x, y] = position
+export let DiamondPinPad = {
+  applyInstruction([x, y], instruction) {
     switch (instruction) {
       case 'U':
         return [x, Math.max(y - 1, Math.abs(x) - 2)]
@@ -53,30 +53,32 @@ export class DiamondPinPad {
       default:
         throw Error(`Invalid instruction character: ${instruction}`)
     }
-  }
+  },
 
-  static positionToNumber(position) {
-    const number = cond([
-      [isEqual([0, -2]), constant('1')],
+  positionToNumber(position) {
+    const number =
+      position
+      |> cond([
+        [isEqual([0, -2]), constant('1')],
 
-      [isEqual([-1, -1]), constant('2')],
-      [isEqual([0, -1]), constant('3')],
-      [isEqual([1, -1]), constant('4')],
+        [isEqual([-1, -1]), constant('2')],
+        [isEqual([0, -1]), constant('3')],
+        [isEqual([1, -1]), constant('4')],
 
-      [isEqual([-2, 0]), constant('5')],
-      [isEqual([-1, 0]), constant('6')],
-      [isEqual([0, 0]), constant('7')],
-      [isEqual([1, 0]), constant('8')],
-      [isEqual([2, 0]), constant('9')],
+        [isEqual([-2, 0]), constant('5')],
+        [isEqual([-1, 0]), constant('6')],
+        [isEqual([0, 0]), constant('7')],
+        [isEqual([1, 0]), constant('8')],
+        [isEqual([2, 0]), constant('9')],
 
-      [isEqual([-1, 1]), constant('A')],
-      [isEqual([0, 1]), constant('B')],
-      [isEqual([1, 1]), constant('C')],
+        [isEqual([-1, 1]), constant('A')],
+        [isEqual([0, 1]), constant('B')],
+        [isEqual([1, 1]), constant('C')],
 
-      [isEqual([0, 2]), constant('D')],
-    ])(position)
+        [isEqual([0, 2]), constant('D')],
+      ])
     if (isNil(number))
       throw Error(`Missing position to number map for: ${position}`)
     return number
-  }
+  },
 }

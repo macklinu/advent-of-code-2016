@@ -7,12 +7,12 @@ import trim from 'lodash/fp/trim'
 
 import { SquarePinPad, DiamondPinPad } from './pinpad'
 
-const parseInput = flow(
-  split('\n'), // split at new line
-  map(trim), // remove empty spaces
-  reject(isEmpty), // remove empty lines
-  map(split('')) // turn each line into an array of instructions
-)
+let parseInput = input =>
+  input
+  |> split('\n')  // split at new line
+  |> map(trim)  // remove empty spaces
+  |> reject(isEmpty)  // remove empty lines
+  |> map(split('')) // turn each line into an array of instructions
 
 export default (input, calculatorType) => {
   // start at "5" on the pin pad
@@ -22,15 +22,15 @@ export default (input, calculatorType) => {
       : [-2, 0] // left edge of diamond pin pad
   let codes = []
 
-  const pinPad = calculatorType === 'square' ? SquarePinPad : DiamondPinPad
+  let pinPad = calculatorType === 'square' ? SquarePinPad : DiamondPinPad
 
-  const instructionSet = parseInput(input)
-  for (const instructions of instructionSet) {
-    for (const instruction of instructions) {
+  let instructionSet = parseInput(input)
+  instructionSet.forEach(instructions => {
+    instructions.forEach(instruction => {
       position = pinPad.applyInstruction(position, instruction)
-    }
-    const code = pinPad.positionToNumber(position)
+    })
+    let code = pinPad.positionToNumber(position)
     codes.push(code)
-  }
+  })
   return codes.join('')
 }
