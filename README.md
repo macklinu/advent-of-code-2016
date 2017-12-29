@@ -1,4 +1,4 @@
-# Advent of Code 2016
+# ![Advent of Code 2016](http://adventofcode.com/2016)
 
 [![Build Status](https://travis-ci.org/macklinu/advent-of-code-2016.svg?branch=master)](https://travis-ci.org/macklinu/advent-of-code-2016)
 
