@@ -4,8 +4,8 @@
 
 ## Prerequisites
 
-- Latest version of Node 6.x (I use [nvm](https://github.com/creationix/nvm))
-- [Yarn](https://yarnpkg.com/) - `npm i -g yarn`
+* Latest version of Node 8.x (I use [nvm](https://github.com/creationix/nvm))
+* [Yarn](https://yarnpkg.com/)
 
 ## Install dependencies
 
@@ -26,11 +26,5 @@ yarn test
 Watch and run tests for changed files
 
 ```
-yarn run watch
-```
-
-Lint the source files using the [JavaScript Standard Style Guide](https://github.com/feross/standard)
-
-```
-yarn run lint
+yarn test --watch
 ```
