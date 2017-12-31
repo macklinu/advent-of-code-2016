@@ -20,6 +20,7 @@
     "prettier": "^1.9.2"
   },
   "dependencies": {
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "md5": "^2.2.1"
   }
 }
